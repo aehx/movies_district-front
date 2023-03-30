@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap");
+
+@layer base {
+  .button {
+    @apply text-sm bg-red-600 rounded-sm py-0.5 sm:px-3 hover:bg-red-700 transition duration-500;
+  }
+  html {
+    font-family: "Rajdhani";
+    @apply font-semibold;
+  }
+  body {
+    @apply text-white;
+  }
+  ::-webkit-scrollbar {
+    @apply hidden;
+  }
+  h2 {
+    @apply text-4xl sm:text-7xl font-medium;
+  }
+  h3 {
+    @apply text-xl sm:text-3xl font-medium;
+  }
+  :root {
+    --swiper-pagination-color: #b91c1c;
+    --swiper-navigation-color: #b91c1c;
+    --swiper-scrollbar-size: 15px;
+    --swiper-scrollbar-border-radius: 15px;
+    --swiper-scrollbar-drag-bg-color: rgb(66, 66, 69);
+    --swiper-scrollbar-bg-color: rgba(0, 0, 0, 0.75);
+    --swiper-scrollbar-right: 2px;
+  }
+  ul {
+    @apply flex;
+  }
+}
