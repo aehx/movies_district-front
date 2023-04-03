@@ -31,7 +31,7 @@ export default function Register() {
         >
           <div className="flex items-center justify-center xs:justify-center w-full pt-5">
             <div className="relative h-[70px] xs:h-[100px] w-[70px] xs:w-[100px] mr-5">
-              <Image fill src="/images/LogoMovie.png" alt="logo" />
+            <Image fill src="/images/LogoMovie.png" alt="logo" loading="lazy" sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"/>
             </div>
             <p className="text-2xl">
               <span className="text-red-600">Movies</span> District

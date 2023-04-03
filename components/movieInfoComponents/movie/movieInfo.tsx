@@ -48,7 +48,7 @@ export default function MovieInfo(props: PropsMovieInfos) {
           ></iframe>
         ) : (
           <div className="flex w-full h-full justify-center items-center">
-            <h3>This trailer is not available</h3>
+            <h3>trailer is coming !</h3>
           </div>
         )}
       </div>
