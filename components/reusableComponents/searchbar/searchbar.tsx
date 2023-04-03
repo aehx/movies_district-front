@@ -17,21 +17,24 @@ export default function Searchbar() {
   const linkedinLink: link = "https://www.linkedin.com/in/kevin-p-0b807a249/";
 
   return (
-    <div className="flex w-screen h-16 bg-zinc-800 justify-center">
-      <div className="flex w-10/12 items-center sm:w-11/12 lg:w-2/3 pl-7 sm:pl-0 ">
-        <Link href="/" className="min-h-max overflow-clip">
+    <div className="flex w-screen lg:h-16 bg-zinc-800 justify-center">
+      <div className="flex w-screen items-center sm:w-11/12 lg:w-2/3 sm:pl-0">
+        <div className="flex flex-col lg:flex-row justify-evenly items-center w-full h-full">
+          <div className="flex justify-center items-center">
+        <Link href="/" className="min-h-max overflow-clip mr-5 md:mr-0">
           <img
             src="/images/LogoMovie.png"
             alt="logo"
-            className="max-h-[110px]"
+            className="max-h-[90px] lg-max-h-[110px]"
           />
         </Link>
-        <div className="flex justify-evenly items-center w-full h-full pl-10">
-          <div className="relative hidden sm:flex">
+        <h1 className="text-xl"><span className="text-red-600">Movies</span> District</h1>
+          </div>
+          <div className="relative flex">
             <input
               type="text"
-              className=" bg-black text-md pl-6 py-1 mr-3 outline-none"
-              placeholder="Chercher un film"
+              className=" bg-black text-md pl-6 py-1 mr-1 sm:mr-3 outline-none"
+              placeholder="Find your movie"
               value={searchedMovie}
               onChange={(e) => setSearchedMovie(e.target.value)}
               onKeyUp={(e) => {
@@ -49,7 +52,7 @@ export default function Searchbar() {
               className="h-3 absolute inset-y-1/4 left-2"
             />
             <button
-              className="text-sm bg-red-600 rounded-sm py-0.5 sm:px-3 hover:bg-red-700 transition duration-500 outline-none "
+              className="text-sm bg-red-600 rounded-sm py-0.5 px-2 sm:px-3 hover:bg-red-700 transition duration-500 outline-none "
               onClick={() => {
                 if (searchedMovie && searchedMovie.length > 0) {
                   dispatch(addSearchedMovies(searchedMovie));
@@ -63,7 +66,7 @@ export default function Searchbar() {
               search
             </button>
           </div>
-          <div className="flex justify-evenly w-[130px]  items-center lg:w-[150px] h-full [&>*]:border-[3px] [&>*:hover]:cursor-pointer [&>*:hover]:border-[3px] [&>*:hover]:border-slate-50 transition-all [&>*:hover]:duration-500">
+          <div className=" my-5 lg:my-0 flex justify-evenly w-[200px]  items-center lg:w-[150px] h-full [&>*]:border-[3px] [&>*:hover]:cursor-pointer [&>*:hover]:border-[3px] [&>*:hover]:border-slate-50 transition-all [&>*:hover]:duration-500">
             <Link
               href={linkedinLink}
               target="_blank"

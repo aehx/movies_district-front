@@ -25,7 +25,7 @@ const Home: NextPage = (): JSX.Element => {
   const upcoming = allGenreOfMovie?.upcoming;
 
   return (
-    <div className="flex w-screen min-h-screen flex-col items-center">
+    <div className="flex w-screen min-h-screen flex-col items-center landscape:hidden lg:landscape:block">
       <Head>
         <title>Movies district</title>
         <link rel="icon" href="/favicon.ico" />
