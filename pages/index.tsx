@@ -27,7 +27,7 @@ const Home: NextPage = (): JSX.Element => {
   return (
     <div className="flex w-screen min-h-screen flex-col items-center">
       <Head>
-        <title>Create Next App</title>
+        <title>Movies district</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
