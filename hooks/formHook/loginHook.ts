@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useCallback } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUserInfos } from "../../redux/store/reducers/user.reducer";
 
@@ -8,22 +8,29 @@ export const formHandler = (
   userPasswordInput: { current: HTMLInputElement | null }
 ) => {
   const dispatch = useDispatch();
+  const [error, setError] = useState<null | { error: string }>(null);
   const handleLogin = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const signupData = {
-        email: userEmailInput.current?.value,
-        password: userPasswordInput.current?.value,
-      };
-      const response = await axios.post(
-        "http://localhost:4000/auth",
-        signupData
-      );
-      if (response) {
+      try {
+        event.preventDefault();
+        const signinData = {
+          email: userEmailInput.current?.value,
+          password: userPasswordInput.current?.value,
+        };
+        const response = await axios.post(
+          "http://localhost:4000/auth",
+          signinData
+        );
         dispatch(addUserInfos(response.data));
+      } catch (e: any) {
+        if ("matchError" in e.response.data) {
+          setError({ error: e.response.data?.matchError });
+        } else {
+          setError({ error: e.response.data?.errors[0]?.msg });
+        }
       }
     },
     [userEmailInput, userPasswordInput]
   );
-  return handleLogin;
+  return { handleLogin, error };
 };

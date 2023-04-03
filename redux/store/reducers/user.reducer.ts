@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 import type { RootState } from "../store";
 
 // Define a type for the slice state
@@ -8,6 +7,7 @@ interface CounterState {
     username: string;
     accessToken: string;
     refreshToken: string;
+    movieInWatchList: [] | number[];
     error?: string;
   };
 }
@@ -26,6 +26,7 @@ export const counterSlice = createSlice({
         username: string;
         accessToken: string;
         refreshToken: string;
+        movieInWatchList: [] | number[];
         error?: string;
       } | null>
     ) => {

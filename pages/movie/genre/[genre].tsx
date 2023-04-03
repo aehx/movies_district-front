@@ -1,5 +1,5 @@
-import Navbar from "../../../components/reusableComponents/navbar/navbar";
 import { NextPage } from "next";
+import Navbar from "../../../components/reusableComponents/navbar/navbar";
 import Searchbar from "../../../components/reusableComponents/searchbar/searchbar";
 import MoviesContainer from "../../../components/genreComponents/movieContainer/moviesContainer";
 

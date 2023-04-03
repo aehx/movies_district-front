@@ -9,7 +9,7 @@ export function textSlice(
   value: number,
   additionalText?: string
 ): string {
-  return text.length > value
+  return text?.length > value
     ? `${text.slice(0, value)} ${additionalText ? additionalText : ""}`
     : text;
 }

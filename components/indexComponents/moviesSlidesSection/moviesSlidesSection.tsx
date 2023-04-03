@@ -1,5 +1,5 @@
-import { PropsWithMultipleArrayOfMovieData } from "../../../typescript/interface/props.interface";
 import SlidesContainer from "./slidesContainer/SlidesContainer";
+import { PropsWithMultipleArrayOfMovieData } from "../../../typescript/interface/props.interface";
 
 export default function moviesSlidesSection(
   props: PropsWithMultipleArrayOfMovieData

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserInfos } from "../../../redux/store/reducers/user.reducer";
-import { RootState } from "../../../redux/store/store";
 import NavbarLink from "../buttonLink/navbarLink";
+import { RootState } from "../../../redux/store/store";
 
 export default function Navbar() {
   const user = useSelector((state: RootState) => state.user.userInfos);
@@ -13,24 +13,27 @@ export default function Navbar() {
       <div className="flex w-full justify-center items-center p-2 sm:justify-start md:w-2/3">
         <ul className="relative flex [&>*]:mx-5 text-lg">
           <NavbarLink href="/" text="Home" />|
-          <NavbarLink href="/" text="Contact" />|
           {!token ? (
             <NavbarLink href="/auth/login" text="Connection" />
           ) : (
             <>
               <button
                 className="hover:text-red-600 cursor-pointer  transition-all hover:duration-500"
-                onClick={() => {
-                  axios.post("http://localhost:4000/users/logout", {
-                    token: user.refreshToken,
-                  });
+                onClick={async () => {
+                  await axios.post(
+                    "http://localhost:4000/auth/logout",
+                    { token: user.accessToken },
+                    {
+                      headers: { "authorization": "Bearer " + user.accessToken },
+                    }
+                  );
                   dispatch(addUserInfos(null));
                 }}
               >
                 logout
               </button>
               |
-              <NavbarLink href="/" text="My movies" />
+              <NavbarLink href="/private/watchlist" text="My movies" />
             </>
           )}
         </ul>

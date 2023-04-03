@@ -10,7 +10,6 @@ module.exports = {
     components: true,
   },
   theme: {
-   
     extend: {
       screens: {
         "xxs": "320px",

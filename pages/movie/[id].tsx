@@ -5,7 +5,7 @@ import MovieInfoContainer from "../../components/movieInfoComponents/MovieInfoCo
 const MovieInfo: NextPage = (): JSX.Element => {
   return (
     <div className="flex w-screen flex-col items-center">
-      <main className="flex w-full min-h-screen xl:max-h-screen flex-col items-center">
+      <main className="flex w-full min-h-screen xl:min-h-screen flex-col items-center">
         <Searchbar />
         <MovieInfoContainer />
       </main>

@@ -12,9 +12,11 @@ export default function TrendingSection(
     genre: "top_rated",
     navStyle: "top_rated",
   });
+
   const movies_By_Genre = Object.entries(props.movieToDisplay).filter(
     (el) => el[0] === genreToDisplay.genre
   )[0][1];
+
   return (
     <section className=" flex flex-col items-center w-screen min-h-screen bg-zinc-800 pb-5">
       <TrendingNavbar

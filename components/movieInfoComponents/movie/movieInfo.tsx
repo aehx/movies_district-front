@@ -1,9 +1,13 @@
 import Image from "next/image";
-import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
+import FavoriteButton from "../../reusableComponents/favoriteButton/favoriteButton";
 import { whatGenreIsTheMovie } from "../../../utils/genre.utils";
-export default function MovieInfo(props: Partial<TMDBMovieData>) {
+import { PropsMovieInfos } from "../../../typescript/interface/props.interface";
+
+export default function MovieInfo(props: PropsMovieInfos) {
   const img_base_url = "https://www.themoviedb.org/t/p/w780";
   const title = props?.title ?? "Movie Picture";
+  const id = props?.id ?? 0;
+  const overview = props?.overview ?? "";
   return (
     <div className="lg:w-2/3 h-full flex flex-col items-center lg:items-start">
       <h3 className="mb-5 lg:mb-10 text-red-600">{props.title}</h3>
@@ -29,19 +33,23 @@ export default function MovieInfo(props: Partial<TMDBMovieData>) {
               (max-width: 1200px) 50vw,
               33vw"
           />
+          <FavoriteButton id={id} />
         </div>
-        <p className="w-2/3 lg:w-2/5">{props.overview}</p>
+        <p className="w-2/3 lg:w-2/5">{overview}</p>
       </div>
-      <div className="w-8/12 aspect-video lg:max-w-h-[500px]">
+      <div className="w-8/12 aspect-video lg:max-w-[500px]">
         <h3 className=" text-red-600">Trailer</h3>
-        {!props.trailerKey || props.trailerKey === undefined ? (
-          <p>No trailer available</p>
-        ) : (
+        {props.trailerKey ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${props.trailerKey}`}
             allowFullScreen={true}
             className="h-full w-full"
+            title="trailer"
           ></iframe>
+        ) : (
+          <div className="flex w-full h-full justify-center items-center">
+            <h3>This trailer is not available</h3>
+          </div>
         )}
       </div>
     </div>

@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getMovieByPage } from "../../../hooks/moviePage.hook";
 import { RootState } from "../../../redux/store/store";
 import GridSlider from "../../sliderComponents/slider/gridSlider";
+import { getMovieByPage } from "../../../hooks/moviePage.hook";
+import { redirectIfCondition } from "../../../hooks/userHook/checkIfUserConnected";
 import PageManager from "./pageManager/pageManager";
+
 export default function MoviesContainer() {
   const moviesToDisplay = useSelector(
     (state: RootState) => state.movies.genreToDisplay
   );
+  const condition = !moviesToDisplay;
+  redirectIfCondition(condition, "/");
   const [page, setPage] = useState(1);
-  const movieByPage = getMovieByPage(moviesToDisplay, page)?.response;
+  const movieByPage = getMovieByPage(moviesToDisplay ?? "", page)?.response;
   const movieData =
     movieByPage instanceof Object && "movieData" in movieByPage
       ? movieByPage.movieData

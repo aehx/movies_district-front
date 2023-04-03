@@ -18,9 +18,9 @@ export default function TrendingNavbar(props: PropsTrendingNavbar) {
   return (
     <div className="flex flex-col items-center w-screen pt-10 [&>*]:w-10/12 shadow-md shadow-zinc-900">
       <div className="flex items-center">
-      <span className="h-10 w-10 flex justify-center items-center mr-3">
-            <img src="images/moviePic.png" alt="logo" />
-          </span>
+        <span className="h-10 w-10 flex justify-center items-center mr-3">
+          <img src="images/moviePic.png" alt="logo" />
+        </span>
         <h3>
           Trending <span className="text-red-600">Movies</span>
         </h3>

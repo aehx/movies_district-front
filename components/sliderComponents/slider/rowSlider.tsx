@@ -1,12 +1,18 @@
-import MovieSlide from "../slide/movieSlide";
-import TrailerSlide from "../slide/trailerSlide";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/swiper-bundle.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Navigation, Pagination } from "swiper";
+import MovieSlide from "../slide/movieSlide";
+import TrailerSlide from "../slide/trailerSlide";
 import TopTenSlide from "../slide/topTenSlide";
-import { PropsRowSlider } from "../../../typescript/interface/props.interface";
 import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
+
+interface PropsRowSlider {
+  direction: "horizontal" | "vertical" | undefined;
+  nbrOfSlides: number;
+  slides: TMDBMovieData[] | undefined;
+  whichSlide: string;
+}
 
 export default function RowSlider(props: PropsRowSlider) {
   const whichSlideToReturn = (property?: TMDBMovieData) => {
@@ -45,7 +51,7 @@ export default function RowSlider(props: PropsRowSlider) {
     <div>
       <Swiper
         speed={800}
-        modules={[Navigation, Pagination,Mousewheel]}
+        modules={[Navigation, Pagination, Mousewheel]}
         pagination={{
           type: "progressbar",
           clickable: true,
@@ -63,7 +69,12 @@ export default function RowSlider(props: PropsRowSlider) {
           700: {
             slidesPerView: 3,
           },
-          1024: { slidesPerView: whichSlideToReturn()?.slideName === "trailerSlide" ? 4: props.nbrOfSlides },
+          1024: {
+            slidesPerView:
+              whichSlideToReturn()?.slideName === "trailerSlide"
+                ? 4
+                : props.nbrOfSlides,
+          },
           1200: { slidesPerView: props.nbrOfSlides },
         }}
       >

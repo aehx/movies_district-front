@@ -8,7 +8,6 @@
     @apply text-sm bg-red-600 rounded-sm py-0.5 sm:px-3 hover:bg-red-700 transition duration-500;
   }
   html {
-    font-family: "Rajdhani";
     @apply font-semibold;
   }
   body {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getMovieByPage } from "../../hooks/moviePage.hook";
-import { RootState } from "../../redux/store/store";
 import PageList from "../genreComponents/movieContainer/pageManager/pageManager";
 import GridSlider from "../sliderComponents/slider/gridSlider";
 import TrailerPopUp from "./trailerPopUp";
+import { RootState } from "../../redux/store/store";
 
 export default function TrailerContainer() {
   const moviesToDisplay = useSelector(
@@ -14,7 +14,7 @@ export default function TrailerContainer() {
     (state: RootState) => state.movies.trailerToDisplay
   );
   const [page, setPage] = useState(1);
-  const movieByPage = getMovieByPage(moviesToDisplay, page)?.response;
+  const movieByPage = getMovieByPage(moviesToDisplay ?? "", page)?.response;
   const slides = movieByPage?.movieData ?? [];
   const maxPages = movieByPage?.maxPages ?? null;
 
@@ -33,6 +33,6 @@ export default function TrailerContainer() {
       />
     </div>
   ) : (
-    <TrailerPopUp movieId={`${trailerToDisplay}`} />
+    <TrailerPopUp movieId={trailerToDisplay} />
   );
 }

@@ -2,8 +2,8 @@ import Image from "next/image";
 import { whatGenreIsTheMovie } from "../../../utils/genre.utils";
 import { textSlice } from "../../../utils/text.utils";
 import ButtonLink from "../../reusableComponents/buttonLink/buttonLink";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 
 export default function HeaderSlide(props: TMDBMovieData) {
@@ -12,7 +12,7 @@ export default function HeaderSlide(props: TMDBMovieData) {
     <div className="min-h-[250px] xs:min-h-[300px] sm:min-h-[400px] md:min-h-[550px] xl:min-h-[850px] relative">
       <div className="w-3/4 h-full absolute top-0 bg-gradient-to-r from-zinc-900 to-transparent z-50"></div>
       <div className="[&>*]:mb-5 absolute top-[10%] left-[15%] max-w-xl z-50">
-        <h2 className=" ">{props.title}</h2>
+        <h2>{props.title}</h2>
         <div className="flex flex-col [&>*]:my-4 items-start">
           <span className="flex [&>*]:mr-3 items-center [&>*]:mx-2">
             <FontAwesomeIcon

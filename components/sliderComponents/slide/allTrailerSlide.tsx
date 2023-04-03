@@ -1,10 +1,10 @@
-import Image from "next/image"
-import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addTrailerToDisplay } from "../../../redux/store/reducers/movies.reducer";
-import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 import { textSlice } from "../../../utils/text.utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
+import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 
 export default function AllTrailerSlide(props: TMDBMovieData) {
   const dispatch = useDispatch();
@@ -15,9 +15,16 @@ export default function AllTrailerSlide(props: TMDBMovieData) {
         className="w-11/12 h-[250px] overflow-hidden relative flex justify-center items-center group"
         onClick={() => dispatch(addTrailerToDisplay(props.id))}
       >
-        <Image src={`${img_base_url}${props.backdrop_path}`} alt={props.title} loading="eager" fill className="absolute object-cover group-hover:scale-110 group-hover:opacity-30 transition-all duration-1000" sizes="(max-width: 768px) 100vw,
+        <Image
+          src={`${img_base_url}${props.backdrop_path}`}
+          alt={props.title}
+          loading="eager"
+          fill
+          className="absolute object-cover group-hover:scale-110 group-hover:opacity-30 transition-all duration-1000"
+          sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
-              33vw"/>
+              33vw"
+        />
         <div
           className=" border-4 border-red-600 rounded-3xl group-hover:rounded-full group z-10"
           onClick={() => {}}

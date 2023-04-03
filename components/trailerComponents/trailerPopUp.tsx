@@ -1,12 +1,12 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import getOneMovieTrailer from "../../hooks/trailerHook/getOneMovieTrailer";
 import { addTrailerToDisplay } from "../../redux/store/reducers/movies.reducer";
+import getMovieTrailer from "../../hooks/trailerHook/getMovieTrailer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function TrailerPopUp(props: { movieId: string }) {
-  const trailer = getOneMovieTrailer([], Number(props.movieId));
+export default function TrailerPopUp(props: { movieId: number | null }) {
   const dispatch = useDispatch();
+  const { loading, response } = getMovieTrailer(props?.movieId);
   return (
     <div
       className="absolute top-0 left-0 w-screen h-screen bg-black z-50 flex justify-center items-center"
@@ -19,16 +19,21 @@ export default function TrailerPopUp(props: { movieId: string }) {
         >
           Close <FontAwesomeIcon icon={faTimes} className="h-4" />
         </span>
-        {trailer.response === undefined ? (
+        {loading ? (
+          <div className="flex w-full h-full justify-center items-center">
+            <h3>trailer is coming !</h3>
+          </div>
+        ) : response ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${response}`}
+            allowFullScreen={true}
+            className="h-full w-full"
+            title="trailer"
+          ></iframe>
+        ) : (
           <div className="flex w-full h-full justify-center items-center">
             <h3>No trailer available</h3>
           </div>
-        ) : (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${trailer.response}`}
-            allowFullScreen={true}
-            className="h-full w-full"
-          ></iframe>
         )}
       </div>
     </div>

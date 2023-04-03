@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+/**
+ * if the condition is true, redirect user to the path
+ * @param condition  boolean
+ * @param redirectTo redirection path
+ * @return void
+ */
 
-export const redirectIfUserConnected = (
-  user: {
-    username: string;
-    accessToken: string;
-    refreshToken: string;
-  } | null
-) => {
+export const redirectIfCondition = (
+  condition: boolean,
+  redirectTo: string
+): void => {
   const router = useRouter();
   useEffect(() => {
     (async () => {
-      if (user) {
-        const token = user && "accessToken" in user && user.accessToken;
-        if (token) {
-          router.push("/");
-        }
+      if (condition) {
+        router.push(redirectTo);
       }
     })();
-  }, [user]);
+  }, [condition]);
 };

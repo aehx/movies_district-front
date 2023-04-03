@@ -1,7 +1,8 @@
-import type { NextPage } from "next";
-import { RootState } from "../redux/store/store";
-import { useSelector } from "react-redux";
 import Head from "next/head";
+import type { NextPage } from "next";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store/store";
+import getAllMovie from "../hooks/getAllMovie.hook";
 import Background from "../components/indexComponents/background/background";
 import Searchbar from "../components/reusableComponents/searchbar/searchbar";
 import Navbar from "../components/reusableComponents/navbar/navbar";
@@ -11,26 +12,18 @@ import TrendingSection from "../components/indexComponents/trendingSection/trend
 import Playlist_Section from "../components/indexComponents/playlist_Section/playlist_Section";
 import TrailerSection from "../components/indexComponents/trailerSection/trailerSection";
 import TrailerPopUp from "../components/trailerComponents/trailerPopUp";
-import getOneMovieTrailer from "../hooks/trailerHook/getOneMovieTrailer";
-import getAllGenreOfMovie from "../hooks/getAllGenreOfMovie.hook";
 
 const Home: NextPage = (): JSX.Element => {
-  const topTenTrailerToDisplay = useSelector<RootState>(
-    (state) => state.movies.topTenTrailer
+  const trailerToDisplay = useSelector(
+    (state: RootState) => state?.movies.trailerToDisplay
   );
-  const trailerToDisplay = useSelector<RootState>(
-    (state) => state?.movies.trailerToDisplay
-  );
-  const allGenreOfMovie = getAllGenreOfMovie()?.response;
+  const allGenreOfMovie = getAllMovie()?.response;
   const top_rated = allGenreOfMovie?.top_rated;
   const topTenPlaylist = allGenreOfMovie?.topTenPlaylist;
   const popular = allGenreOfMovie?.popular;
   const now_playing = allGenreOfMovie?.now_playing;
   const upcoming = allGenreOfMovie?.upcoming;
-  const topTenTrailer = getOneMovieTrailer(
-    topTenPlaylist || [],
-    typeof topTenTrailerToDisplay === "number" ? topTenTrailerToDisplay : null
-  )?.response;
+
   return (
     <div className="flex w-screen min-h-screen flex-col items-center">
       <Head>
@@ -40,16 +33,12 @@ const Home: NextPage = (): JSX.Element => {
           href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
           rel="stylesheet"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
+        <link rel="preconnect" href="https://www.themoviedb.org" />
+        <link rel="preconnect" href="https://image.tmdb.org" />
+        <meta
+          name="description"
+          content="Movies district, find your movies in one click"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        ></link>
       </Head>
       <main className="flex w-full min-h-screen flex-col items-center">
         {!trailerToDisplay ? (
@@ -64,13 +53,12 @@ const Home: NextPage = (): JSX.Element => {
             />
             <Playlist_Section
               movieToDisplay={topTenPlaylist}
-              trailerToDisplay={topTenTrailer}
               suggestedToDisplay={upcoming}
             />
             <TrailerSection trailerToDisplay={now_playing} />
           </>
         ) : (
-          <TrailerPopUp movieId={`${trailerToDisplay}`} />
+          <TrailerPopUp movieId={trailerToDisplay} />
         )}
       </main>
     </div>

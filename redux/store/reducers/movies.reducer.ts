@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 import type { RootState } from "../store";
+import {
+  TMDBMovieById,
+  TMDBMovieData,
+} from "../../../typescript/interface/movie.interface";
 
 // Define a type for the slice state
 interface CounterState {
-  genreToDisplay: string;
+  genreToDisplay: string | null;
   topTenTrailer: null | number;
   trailerToDisplay: null | number;
-  movieInfoToDisplay: TMDBMovieData | null;
+  movieInfoToDisplay: TMDBMovieData | TMDBMovieById | null;
   searchedMovies: string | null;
 }
 
@@ -32,7 +35,10 @@ export const counterSlice = createSlice({
     addTrailerToDisplay: (state, action: PayloadAction<number | null>) => {
       state.trailerToDisplay = action.payload;
     },
-    addMovieInfoToDisplay: (state, action: PayloadAction<TMDBMovieData>) => {
+    addMovieInfoToDisplay: (
+      state,
+      action: PayloadAction<TMDBMovieData | TMDBMovieById>
+    ) => {
       state.movieInfoToDisplay = action.payload;
     },
     addSearchedMovies: (state, action: PayloadAction<string>) => {

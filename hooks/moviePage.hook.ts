@@ -5,22 +5,14 @@ import {
   TMDBResponse,
 } from "../typescript/interface/movie.interface";
 
-interface HookResults {
-  response: null | Response;
-  error: null | AxiosError;
-  loading: boolean;
-}
-
-interface AxiosResult {
-  movieData: TMDBResponse;
-}
-
 interface Response {
   maxPages: number;
   movieData: TMDBMovieData[];
 }
-
-export const getMovieByPage = (category: string, page: number): HookResults => {
+export interface AxiosResult {
+  movieData: TMDBResponse;
+}
+export const getMovieByPage = (category: string, page: number) => {
   const [error, setError] = useState<null | AxiosError>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [response, setResponse] = useState<null | Response>(null);

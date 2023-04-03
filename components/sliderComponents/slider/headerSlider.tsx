@@ -6,10 +6,8 @@ import { useState } from "react";
 import HeaderSlide from "../slide/headerSlide";
 import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 
-export default function HeaderSlider(props: {
-  slides: TMDBMovieData[] | undefined;
-}) {
-  const [test, setTest] = useState<string>("animate-growUp");
+export default function HeaderSlider(props: { slides: TMDBMovieData[] }) {
+  const [test, setTest] = useState<string>("");
   const movies = props?.slides?.map((movie) => {
     return (
       <SwiperSlide
@@ -22,7 +20,6 @@ export default function HeaderSlider(props: {
   });
   return (
     <Swiper
-      loop={true}
       speed={800}
       modules={[Navigation, Pagination, Autoplay]}
       pagination={{ clickable: true }}
@@ -31,6 +28,7 @@ export default function HeaderSlider(props: {
       slidesPerView={1}
       className="w-screen max-h-[850px]"
       key={1}
+      onInit={() => setTest("animate-growUp")}
       onSlideChangeTransitionStart={() => {
         setTest("");
       }}

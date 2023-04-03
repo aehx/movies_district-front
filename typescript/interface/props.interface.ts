@@ -1,4 +1,4 @@
-import { TMDBMovieData } from "./movie.interface";
+import { TMDBMovieById, TMDBMovieData } from "./movie.interface";
 
 interface GenreOfMovie {
   top_rated?: TMDBMovieData[] | [] | undefined;
@@ -15,20 +15,12 @@ export interface PropsWithMultipleArrayOfMovieData {
   movieToDisplay: GenreOfMovie;
 }
 
-export interface PropsLatest {
-  categoryTitle: string;
-  categoryToFetch: string;
-  movieToDisplay: TMDBMovieData[] | undefined | [];
-}
-
 export interface PropsPlaylist {
   movieToDisplay: TMDBMovieData[] | undefined | [];
   suggestedToDisplay: TMDBMovieData[] | undefined | [];
-  trailerToDisplay: string | {};
 }
 export interface PropsTopTen {
-  movieToDisplay: TMDBMovieData[] | undefined | [];
-  trailerToDisplay: string | {};
+  movieToDisplay: TMDBMovieData[] | [];
 }
 export interface PropsSuggested {
   suggestedToDisplay: TMDBMovieData[] | undefined | [];
@@ -36,7 +28,7 @@ export interface PropsSuggested {
 
 export interface PropsButtonLink {
   href: string;
-  movieInfo?: TMDBMovieData;
+  movieInfo?: TMDBMovieData | TMDBMovieById;
   title: string;
   genre?: string;
 }
@@ -57,17 +49,29 @@ export interface PropsNavLink {
   text: string;
 }
 
-export interface PropsRowSlider {
-  direction: "horizontal" | "vertical" | undefined;
-  nbrOfSlides: number;
-  slides: TMDBMovieData[] | undefined;
-  whichSlide: string;
-}
-
 export interface PropsGridSlider {
   slidesPerView: number;
   rows: number;
-  slides: TMDBMovieData[] | null | [];
+  slides: TMDBMovieData[] | TMDBMovieById[] | null | [];
   whichGrid: string;
 }
 export type PropsPlaylistChild = Partial<PropsPlaylist>;
+
+export interface PropsMovieInfos {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  style: string;
+  title: string;
+  trailerKey: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}

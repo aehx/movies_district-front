@@ -1,21 +1,25 @@
+import { RootState } from "../../redux/store/store";
 import { useSelector } from "react-redux";
 import MovieInfo from "./movie/movieInfo";
-import getOneMovieTrailer from "../../hooks/trailerHook/getOneMovieTrailer";
 import Navbar from "../reusableComponents/navbar/navbar";
-import { RootState } from "../../redux/store/store";
+import getMovieTrailer from "../../hooks/trailerHook/getMovieTrailer";
+import { redirectIfCondition } from "../../hooks/userHook/checkIfUserConnected";
+import { PropsMovieInfos } from "../../typescript/interface/props.interface";
 
 export default function MovieInfoContainer() {
   const movie = useSelector(
     (state: RootState) => state.movies.movieInfoToDisplay
   );
-  const id = movie?.id ? movie?.id : null;
-  const trailer = getOneMovieTrailer([], id)?.response;
-
+  const condition = !movie;
+  redirectIfCondition(condition, "/");
+  const id = movie?.id ?? null;
+  const trailer = id ? getMovieTrailer(id)?.response : null;
+  const movieInfo = movie && { ...movie, trailerKey: trailer };
   return (
     <>
       <Navbar />
       <div className="min-h-screen w-full pt-10 flex justify-center px-2 bg-black pb-20">
-        <MovieInfo {...movie} trailerKey={trailer} />
+        <MovieInfo {...(movieInfo as PropsMovieInfos)} />
       </div>
     </>
   );

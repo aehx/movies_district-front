@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { addSearchedMovies } from "../../../redux/store/reducers/movies.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { addSearchedMovies } from "../../../redux/store/reducers/movies.reducer";
-import { useRouter } from "next/router";
 
 type link = string;
+
 export default function Searchbar() {
   const [searchedMovie, setSearchedMovie] = useState("");
   const dispatch = useDispatch();

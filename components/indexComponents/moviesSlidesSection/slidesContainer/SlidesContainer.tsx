@@ -1,6 +1,12 @@
-import { PropsLatest } from "../../../../typescript/interface/props.interface";
 import ButtonLink from "../../../reusableComponents/buttonLink/buttonLink";
 import RowSlider from "../../../sliderComponents/slider/rowSlider";
+import { TMDBMovieData } from "../../../../typescript/interface/movie.interface";
+
+interface PropsLatest {
+  categoryTitle: string;
+  categoryToFetch: string;
+  movieToDisplay: TMDBMovieData[] | undefined | [];
+}
 
 export default function SlidesContainer(props: PropsLatest) {
   const movieList = (categoryToFetch: string) => {

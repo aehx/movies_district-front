@@ -1,17 +1,20 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Grid } from "swiper";
 import "swiper/css";
 import "swiper/swiper-bundle.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Grid } from "swiper";
 import GridSlide from "../slide/gridSlide";
 import AllTrailerSlide from "../slide/allTrailerSlide";
 import { PropsGridSlider } from "../../../typescript/interface/props.interface";
-import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
+import {
+  TMDBMovieById,
+  TMDBMovieData,
+} from "../../../typescript/interface/movie.interface";
 
 export default function GridSlider(props: PropsGridSlider) {
-  const whichSlideToReturn = (property: TMDBMovieData) => {
+  const whichSlideToReturn = (property: TMDBMovieData | TMDBMovieById) => {
     switch (props.whichGrid) {
       case "trailerSlide":
-        return <AllTrailerSlide {...property} />;
+        return <AllTrailerSlide {...(property as TMDBMovieData)} />;
       case "gridSlide":
         return <GridSlide {...property} />;
     }
