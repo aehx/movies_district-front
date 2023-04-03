@@ -17,7 +17,7 @@ const InputSearchMovie = (searchedMovie: string | null) => {
       try {
         if (searchedMovie) {
           const response: AxiosResponse<InputResult> = await axios.get(
-            `http://localhost:4000/movies/inputSearch/${searchedMovie}/${1}`
+            `https://movies-district-back.vercel.app/movies/inputSearch/${searchedMovie}/${1}`
           );
           const filteredMovie: TMDBMovieData[] =
             response.data.movieResults.results.filter(

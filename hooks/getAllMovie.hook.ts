@@ -11,7 +11,7 @@ const getAllMovie = () => {
     (async () => {
       try {
         const allMovies: AxiosResponse<MovieResponse> = await axios.get(
-          "http://localhost:4000/movies/all"
+          "https://movies-district-back.vercel.app/movies/all"
         );
         setResponse(allMovies.data);
       } catch (e: any) {

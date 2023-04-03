@@ -13,7 +13,7 @@ const getMovieTrailer = (id: number | null) => {
       try {
         if (id) {
           const response: AxiosResponse<MovieTrailer> = await axios.get(
-            `http://localhost:4000/movies/trailer/${id}`
+            `https://movies-district-back.vercel.app/movies/trailer/${id}`
           );
           setResponse(response.data.trailer);
         }

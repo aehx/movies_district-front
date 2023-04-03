@@ -18,7 +18,7 @@ export const formHandler = (
           password: userPasswordInput.current?.value,
         };
         const response = await axios.post(
-          "http://localhost:4000/auth",
+          "https://movies-district-back.vercel.app/auth",
           signinData
         );
         dispatch(addUserInfos(response.data));

@@ -14,7 +14,7 @@ const getMoviesFromUserWatchlist = (movieIds: number[] | undefined) => {
       try {
         const response: AxiosResponse<{ watchList: TMDBMovieById[] } | null> =
           await axios.post(
-            "http://localhost:4000/users/getUserMovies",
+            "https://movies-district-back.vercel.app/users/getUserMovies",
             { movieIds },
             { headers: { "authorization": "Bearer " + user?.accessToken } }
           );

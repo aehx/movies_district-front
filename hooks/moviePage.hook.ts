@@ -21,7 +21,7 @@ export const getMovieByPage = (category: string, page: number) => {
     (async () => {
       try {
         const res: AxiosResponse<AxiosResult> = await axios.get(
-          `http://localhost:4000/movies/${category}/${page}`
+          `https://movies-district-back.vercel.app/movies/${category}/${page}`
         );
         setResponse({
           maxPages: res.data.movieData.total_pages,

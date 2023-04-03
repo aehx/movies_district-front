@@ -21,7 +21,7 @@ export default function Navbar() {
                 className="hover:text-red-600 cursor-pointer  transition-all hover:duration-500"
                 onClick={async () => {
                   await axios.post(
-                    "http://localhost:4000/auth/logout",
+                    "https://movies-district-back.vercel.app/auth/logout",
                     { token: user.accessToken },
                     {
                       headers: { "authorization": "Bearer " + user.accessToken },

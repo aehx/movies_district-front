@@ -20,7 +20,7 @@ export default function FavoriteButton({ id }: { id: number }) {
   const updatedWatchList = async () => {
     if (user) {
       const response = await axios.put(
-        "http://localhost:4000/users/updateWatchlist",
+        "https://movies-district-back.vercel.app/users/updateWatchlist",
         { username: user?.username, movieId: id },
         { headers: { "authorization": "Bearer " + user?.accessToken } }
       );
