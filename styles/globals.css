@@ -10,9 +10,9 @@
   html {
     @apply font-semibold;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 700px) and (orientation: landscape) {
+  @media only screen and (min-device-width: 320px) and (max-device-width: 850px) and (orientation: landscape) {
     html {
-      background-color: black;
+      display: none;
 }
   }
   body {
