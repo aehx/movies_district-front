@@ -10,6 +10,20 @@
   html {
     @apply font-semibold;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 700px) and (orientation: landscape) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      width: 100vw;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+}
+  }
   body {
     @apply text-white;
   }
