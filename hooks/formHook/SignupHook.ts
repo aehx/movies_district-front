@@ -8,11 +8,13 @@ const formHandler = (
   userEmailInput: { current: HTMLInputElement | null },
   userPasswordInput: { current: HTMLInputElement | null }
 ) => {
-  const [error, setError] = useState<null | { error: string }>(null);
+  const [error, setError] = useState<null | string>(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       try {
+        setLoading(true);
         event.preventDefault();
         const signupData = {
           username: usernameInput.current?.value,
@@ -23,13 +25,16 @@ const formHandler = (
           "https://movies-district-back.vercel.app/auth/signup",
           signupData
         );
+        setLoading(false);
         dispatch(addUserInfos(response.data));
       } catch (e: any) {
-        setError({ error: e.response.data?.errors[0]?.msg });
+        console.log(e);
+        const data = e.response.data;
+        setError(data.errors[0]?.msg || "User already exist");
       }
     },
     [usernameInput, userPasswordInput, userEmailInput]
   );
-  return { handleSubmit, error };
+  return { handleSubmit, error, loading };
 };
 export default formHandler;

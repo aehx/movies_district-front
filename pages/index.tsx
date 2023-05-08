@@ -12,6 +12,7 @@ import TrendingSection from "../components/indexComponents/trendingSection/trend
 import Playlist_Section from "../components/indexComponents/playlist_Section/playlist_Section";
 import TrailerSection from "../components/indexComponents/trailerSection/trailerSection";
 import TrailerPopUp from "../components/trailerComponents/trailerPopUp";
+import { CircleLoader } from "react-spinners";
 
 const Home: NextPage = (): JSX.Element => {
   const trailerToDisplay = useSelector(
@@ -41,7 +42,26 @@ const Home: NextPage = (): JSX.Element => {
         />
       </Head>
       <main className="flex w-full min-h-screen flex-col items-center">
-        {!trailerToDisplay ? (
+        {!allGenreOfMovie && (
+          <div className="bg-zinc-900 w-full h-[100vh] flex justify-center pt-[30vh]">
+            <div>
+              <h1 className="text-3xl mb-20">
+                <span className="text-red-600">Movies</span> District
+              </h1>
+              <div className="ml-5">
+                <CircleLoader
+                  color="#b91c1c"
+                  speedMultiplier={0.5}
+                  size={150}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+        {allGenreOfMovie && trailerToDisplay && (
+          <TrailerPopUp movieId={trailerToDisplay} />
+        )}
+        {allGenreOfMovie && !trailerToDisplay && (
           <>
             <Background />
             <Searchbar />
@@ -57,8 +77,6 @@ const Home: NextPage = (): JSX.Element => {
             />
             <TrailerSection trailerToDisplay={now_playing} />
           </>
-        ) : (
-          <TrailerPopUp movieId={trailerToDisplay} />
         )}
       </main>
     </div>

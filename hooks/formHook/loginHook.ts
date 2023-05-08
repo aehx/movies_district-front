@@ -8,10 +8,12 @@ export const formHandler = (
   userPasswordInput: { current: HTMLInputElement | null }
 ) => {
   const dispatch = useDispatch();
-  const [error, setError] = useState<null | { error: string }>(null);
+  const [error, setError] = useState<null | string>(null);
+  const [loading, setLoading] = useState<null | boolean>(false);
   const handleLogin = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       try {
+        setLoading(true);
         event.preventDefault();
         const signinData = {
           email: userEmailInput.current?.value,
@@ -21,16 +23,21 @@ export const formHandler = (
           "https://movies-district-back.vercel.app/auth",
           signinData
         );
+        if ("error" in response.data) {
+          setError(response.data.error);
+          setLoading(false);
+        }
+        setLoading(false);
         dispatch(addUserInfos(response.data));
       } catch (e: any) {
         if ("matchError" in e.response.data) {
-          setError({ error: e.response.data?.matchError });
+          setError(e.response.data?.matchError);
         } else {
-          setError({ error: e.response.data?.errors[0]?.msg });
+          setError(e.response.data?.errors[0]?.msg);
         }
       }
     },
     [userEmailInput, userPasswordInput]
   );
-  return { handleLogin, error };
+  return { handleLogin, error, loading };
 };

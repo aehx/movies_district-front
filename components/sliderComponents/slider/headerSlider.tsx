@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/swiper-bundle.min.css";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import HeaderSlide from "../slide/headerSlide";
 import { TMDBMovieData } from "../../../typescript/interface/movie.interface";
 
