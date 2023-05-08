@@ -28,7 +28,6 @@ const formHandler = (
         setLoading(false);
         dispatch(addUserInfos(response.data));
       } catch (e: any) {
-        console.log(e);
         const data = e.response.data;
         setError(data.errors[0]?.msg || "User already exist");
       }
