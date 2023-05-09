@@ -37,7 +37,7 @@ export default function MovieInfo(props: PropsMovieInfos) {
         </div>
         <p className="w-2/3 lg:w-2/5">{overview}</p>
       </div>
-      <div className="w-8/12 aspect-video lg:max-w-[500px]">
+      <div className="w-11/12 aspect-video lg:max-w-[600px]">
         <h3 className=" text-red-600">Trailer</h3>
         {props.trailerKey ? (
           <iframe
