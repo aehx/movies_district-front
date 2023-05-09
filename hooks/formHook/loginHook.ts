@@ -32,8 +32,10 @@ export const formHandler = (
       } catch (e: any) {
         if ("matchError" in e.response.data) {
           setError(e.response.data?.matchError);
+          setLoading(false);
         } else {
           setError(e.response.data?.errors[0]?.msg);
+          setLoading(false);
         }
       }
     },

@@ -29,7 +29,13 @@ const formHandler = (
         dispatch(addUserInfos(response.data));
       } catch (e: any) {
         const data = e.response.data;
-        setError(data.errors[0]?.msg || "User already exist");
+        if (data && "errors" in data) {
+          setError(data.errors[0]?.msg || "User already exist");
+          setLoading(false);
+        } else {
+          setError("aie... some problem here");
+          setLoading(false);
+        }
       }
     },
     [usernameInput, userPasswordInput, userEmailInput]
